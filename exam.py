@@ -27,7 +27,7 @@ class CSVTimeSeriesFile:
         timestamp = int(tmp[0])
         temperature = float(tmp[1])
         assert(len(tmp) ==2)
-        assert(timestamp >=0)
+        #assert(timestamp >=0) #da vedere
         assert(temperature > -10 and temperature <50)
         time_series.append([timestamp, temperature])
       except:
@@ -42,11 +42,14 @@ class CSVTimeSeriesFile:
   
 
 def daily_stats(time_series):
-  for i in range(1, len(time_series)):
-    if time_series[i][0]<=time_series[i-1][0]:
-      raise ExamException("timestamps are not valid")
   try:
-    assert(len(time_series[i]) ==2 for i in range(len(time_series)))
+    assert(isinstance(time_series, list))
+    assert(len(time_series)>0)
+    for i in time_series:
+      assert(isinstance(i, list))
+      assert(len(i) ==2)
+    for i in range(1, len(time_series)):
+      assert(time_series[i][0]>time_series[i-1][0] )
   except:
     raise ExamException("time_series is not valid")
   

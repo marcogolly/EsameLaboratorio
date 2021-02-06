@@ -74,7 +74,7 @@ def daily_stats(time_series):
   return days_result
 
 try:
-  prova = CSVTimeSeriesFile("data.csv")
+  prova = CSVTimeSeriesFile(name ="data.csv")
 
   data= prova.get_data()
 
